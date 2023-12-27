@@ -9,9 +9,11 @@ import {
     StyleSheet,
 } from "react-native";
 import { createRandomThread } from "../../utils/generate-dommy-data";
+import { ThreadsContext } from "../../context/thread-context";
 
 export default function TabOneScreen() {
     const animationRef = React.useRef<Lottie>(null);
+    const threads = React.useContext(ThreadsContext);
     return (
         <SafeAreaView>
             <ScrollView
@@ -40,6 +42,7 @@ export default function TabOneScreen() {
                         alignItems: "center",
                     }}
                 />
+                {threads.map((thread) => thread.author.name)}
             </ScrollView>
         </SafeAreaView>
     );
