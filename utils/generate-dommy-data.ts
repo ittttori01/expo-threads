@@ -1,4 +1,4 @@
-import { fa, faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 import { Thread, User } from "../types/threads";
 
 const name = faker.person.firstName() + "" + faker.person.lastName();
