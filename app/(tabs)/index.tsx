@@ -8,6 +8,7 @@ import {
     ScrollView,
     StyleSheet,
 } from "react-native";
+import { createRandomThread } from "../../utils/generate-dommy-data";
 
 export default function TabOneScreen() {
     const animationRef = React.useRef<Lottie>(null);
@@ -35,7 +36,7 @@ export default function TabOneScreen() {
                     loop={false}
                     style={{
                         width: 90,
-                        height: 90,
+                        height: 70,
                         alignItems: "center",
                     }}
                 />
