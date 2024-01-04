@@ -17,6 +17,8 @@ export default function TabTwoScreen() {
         const result = await axios.get(backendUrl + "/product/" + scanned);
         const { name, spec, price, barcode } = result.data;
         const scannedProduct: Product = { name, spec, price, barcode };
+        scannedProduct.price = Number(scannedProduct.price).toLocaleString();
+        console.log(scannedProduct.price);
         return scannedProduct;
     };
 
@@ -56,48 +58,33 @@ export default function TabTwoScreen() {
     }
     return (
         <View style={styles.container}>
-            <BarCodeScanner
-                onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                style={StyleSheet.absoluteFillObject}
-            />
+            <View style={styles.barcodeScannerContainer}>
+                <BarCodeScanner
+                    onBarCodeScanned={
+                        scanned ? undefined : handleBarCodeScanned
+                    }
+                    style={StyleSheet.absoluteFillObject}
+                />
+            </View>
             {product && (
-                <View style={styles.productContainer}>
-                    <Text>{product.name}</Text>
-                    <Text>{`Spec: ${product.spec}`}</Text>
-                    <Text>{`Price: ${product.price}`}</Text>
-                    <Text>{`Barcode: ${product.barcode}`}</Text>
-                    <Button onPress={() => resetAll()} title="Reset" />
+                <View style={styles.container}>
+                    <View style={styles.card}>
+                        <Text style={styles.heading}>{product.name}</Text>
+                        <Text style={styles.description}>{product.spec}</Text>
+                        <View style={styles.priceContainer}>
+                            <Text style={styles.price}>{product.price}원</Text>
+                        </View>
+                        <View style={styles.discountBanner}>
+                            <Button style={styles.discountText}>
+                                Obtén tus primeros 2 meses a 1 $ al
+                                mesㄹㅁㄴㅇ러마닝러마ㅣㄴ
+                            </Button>
+                        </View>
+                    </View>
                 </View>
             )}
         </View>
     );
-}
-
-{
-    /* <View style={styles.container}>
-<View style={styles.card}>
-  <Text style={styles.heading}>Basic</Text>
-  <Text style={styles.description}>{product.spec}</Text>
-  <View style={styles.priceContainer}>
-    <Text style={styles.currency}>USD</Text>
-    <Text style={styles.price}>{product.price.toFixed(2)}</Text>
-  </View>
-  <View style={styles.discountBanner}>
-    <Text style={styles.discountText}>Obtén tus primeros 2 meses a 1 $ al mes</Text>
-  </View>
-  <TouchableOpacity style={styles.button}>
-    <Text style={styles.buttonText}>Prueba gratis</Text>
-  </TouchableOpacity>
-  <Text style={styles.subheading}>Incluye:</Text>
-  <View style={styles.list}>
-    <Text style={styles.listItem}>Gestión de casos</Text>
-    <Text style={styles.listItem}>Gestión de inventario</Text>
-    <Text style={styles.listItem}>Trackeo para clientes</Text>
-    <Text style={styles.listItem}>Personalización de entornos</Text>
-    <Text style={styles.listItem}>1 solo perfil</Text>
-  </View>
-</View>
-</View> */
 }
 
 const styles = StyleSheet.create({
@@ -105,6 +92,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
+    },
+    barcodeScannerContainer: {
+        flex: 1, // 전체 화면을 차지하도록 설정
+        ...StyleSheet.absoluteFillObject, // 다른 스타일과 병합
     },
     title: {
         fontSize: 20,
