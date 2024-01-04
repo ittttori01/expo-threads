@@ -73,6 +73,33 @@ export default function TabTwoScreen() {
     );
 }
 
+{
+    /* <View style={styles.container}>
+<View style={styles.card}>
+  <Text style={styles.heading}>Basic</Text>
+  <Text style={styles.description}>{product.spec}</Text>
+  <View style={styles.priceContainer}>
+    <Text style={styles.currency}>USD</Text>
+    <Text style={styles.price}>{product.price.toFixed(2)}</Text>
+  </View>
+  <View style={styles.discountBanner}>
+    <Text style={styles.discountText}>Obtén tus primeros 2 meses a 1 $ al mes</Text>
+  </View>
+  <TouchableOpacity style={styles.button}>
+    <Text style={styles.buttonText}>Prueba gratis</Text>
+  </TouchableOpacity>
+  <Text style={styles.subheading}>Incluye:</Text>
+  <View style={styles.list}>
+    <Text style={styles.listItem}>Gestión de casos</Text>
+    <Text style={styles.listItem}>Gestión de inventario</Text>
+    <Text style={styles.listItem}>Trackeo para clientes</Text>
+    <Text style={styles.listItem}>Personalización de entornos</Text>
+    <Text style={styles.listItem}>1 solo perfil</Text>
+  </View>
+</View>
+</View> */
+}
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -88,5 +115,73 @@ const styles = StyleSheet.create({
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
+    },
+    card: {
+        backgroundColor: "white",
+        padding: 16,
+        borderRadius: 12,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    heading: {
+        fontSize: 24,
+        fontWeight: "bold",
+        marginBottom: 8,
+    },
+    description: {
+        color: "#666",
+        marginBottom: 24,
+    },
+    priceContainer: {
+        flexDirection: "row",
+        alignItems: "baseline",
+        marginBottom: 16,
+    },
+    currency: {
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+    price: {
+        fontSize: 40,
+        fontWeight: "bold",
+        marginLeft: 4,
+    },
+    discountBanner: {
+        backgroundColor: "#F2F2F2",
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        borderRadius: 8,
+        marginBottom: 24,
+    },
+    discountText: {
+        color: "#333333",
+    },
+    button: {
+        backgroundColor: "black",
+        borderRadius: 8,
+        padding: 16,
+        marginBottom: 24,
+    },
+    buttonText: {
+        color: "white",
+        textAlign: "center",
+        fontWeight: "bold",
+    },
+    subheading: {
+        fontSize: 18,
+        fontWeight: "bold",
+        marginBottom: 16,
+    },
+    list: {
+        paddingLeft: 20,
+    },
+    listItem: {
+        marginBottom: 8,
     },
 });
