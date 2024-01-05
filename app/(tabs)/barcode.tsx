@@ -75,11 +75,15 @@ export default function TabTwoScreen() {
                             <Text style={styles.price}>{product.price}원</Text>
                         </View>
                         <View style={styles.discountBanner}>
-                            <Button style={styles.discountText}>
-                                Obtén tus primeros 2 meses a 1 $ al
-                                mesㄹㅁㄴㅇ러마닝러마ㅣㄴ
-                            </Button>
+                            <Button
+                                onPress={resetAll}
+                                title="다시 스캔하기"
+                            ></Button>
                         </View>
+                        {/* <Button
+                            onPress={resetAll}
+                            title="다시 스캔하기"
+                        ></Button> */}
                     </View>
                 </View>
             )}
