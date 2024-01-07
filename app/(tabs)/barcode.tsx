@@ -1,17 +1,15 @@
-import { StyleSheet } from "react-native";
-import { Text, View, Button } from "../../components/Themed";
+import { StyleSheet, Button } from "react-native";
+import { Text, View } from "../../components/Themed";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Product } from "../../types/product";
-import { useNavigation } from "@react-navigation/native";
 
 export default function TabTwoScreen() {
     const [hasPermission, setHasPermission] = useState(false);
     const [scanned, setScanned] = useState(false);
     const backendUrl = process.env.EXPO_PUBLIC_API_URL;
     const [product, setProduct] = useState<Product | null>(null);
-    const navigation = useNavigation();
 
     const findProduct = async (scanned: string): Promise<Product> => {
         const result = await axios.get(backendUrl + "/product/" + scanned);
@@ -44,10 +42,8 @@ export default function TabTwoScreen() {
     }) => {
         setScanned(true);
         const scanned: string = data.trim();
-        alert(scanned);
         const product = await findProduct(scanned);
-        setProduct(product); //
-        // navigation.navigate("product", { product });
+        setProduct(product);
     };
 
     if (hasPermission === null) {
@@ -67,7 +63,7 @@ export default function TabTwoScreen() {
                 />
             </View>
             {product && (
-                <View style={styles.container}>
+                <View style={styles.productContainer}>
                     <View style={styles.card}>
                         <Text style={styles.heading}>{product.name}</Text>
                         <Text style={styles.description}>{product.spec}</Text>
@@ -97,6 +93,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    productContainer: {
+        flex: 1,
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+    },
     barcodeScannerContainer: {
         flex: 1, // 전체 화면을 차지하도록 설정
         ...StyleSheet.absoluteFillObject, // 다른 스타일과 병합
@@ -105,14 +107,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
     },
-    productContainer: {
-        flex: 1,
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
-    },
     card: {
         backgroundColor: "white",
+        width: 350,
+        height: 300,
         padding: 16,
         borderRadius: 12,
         shadowColor: "#000",
@@ -131,6 +129,7 @@ const styles = StyleSheet.create({
     },
     description: {
         color: "#666",
+        fontSize: 20,
         marginBottom: 24,
     },
     priceContainer: {
@@ -152,7 +151,7 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         paddingHorizontal: 16,
         borderRadius: 8,
-        marginBottom: 24,
+        marginTop: 24,
     },
     discountText: {
         color: "#333333",
@@ -172,11 +171,5 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "bold",
         marginBottom: 16,
-    },
-    list: {
-        paddingLeft: 20,
-    },
-    listItem: {
-        marginBottom: 8,
     },
 });

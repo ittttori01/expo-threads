@@ -67,17 +67,12 @@ export function Button(props: ButtonProps) {
 }
 const styles = StyleSheet.create({
     button: {
-        // alignItems: "center",
-        // justifyContent: "center",
-        // paddingVertical: 12,
-        // paddingHorizontal: 32,
-        // borderRadius: 4,
-        // elevation: 3,
-        // backgroundColor: "black",
-        backgroundColor: "727272",
-        paddingVertical: 8,
-        paddingHorizontal: 16,
-        borderRadius: 8,
+        alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
         marginBottom: 24,
     },
     text: {
